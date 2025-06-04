@@ -1,36 +1,27 @@
-NAME=cpp-ex00
-FLAGS=-Wall -Wextra -Werror -std=c++98
-SRCSF=main.c \
-OBJSF=$(SRCSF:.c=.o)
-SRCDIR=srcs/
-OBJDIR=objs/
-SRCS=$(addprefix srcs/, $(SRCSF))
-OBJS=$(addprefix objs/, $(OBJSF))
+NAME = megaphone
 
-all: $(NAME)
+SRCS = megaphone.cpp
 
-$(NAME): $(OBJDIR) $(OBJS)
-	@echo "\033[0m\033[1;35m|\033[0m"
-	@cc $(FLAGS) -o $(NAME) $(OBJS)
-	@echo "\033[1;32mcpp-ex00 ready ✓\033[0m"
+CC = c++
 
-$(OBJDIR)%.o:$(SRCDIR)%.c
-	@echo " \c"
-	@cc $(FLAGS) -c $^ -o $@
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-	@echo "\033[1;35mcpp-ex00 compiling... |\033[0m\033[45m\c"
+OBJS = $(SRCS:.cpp=.o)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -I. -c $< -o $@
+
+all: ${NAME}
 
 clean:
-	@rm -rf $(OBJDIR)
-	@echo "\033[1;31mcpp-ex00 objects deleted\033[0m"
-
+	rm -f ${OBJS}
 
 fclean: clean
-	@rm -rf $(NAME)
-	@echo "\033[1;31mcpp-ex00 binary file deleted\033[0m"
+	rm -f $(NAME)
 
-re: fclean all
+re:	fclean all
 
 .PHONY: all clean fclean re
