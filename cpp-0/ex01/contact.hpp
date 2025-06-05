@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 01:44:55 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/05 01:44:57 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/05 16:53:14 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ class contact {
 	private:
 		std::string name;
 		std::string phone;
+		std::string fname;
+		std::string nickname;
+		std::string darksecret;
 
 	public:
 		void setname(std::string n);
