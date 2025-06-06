@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 00:51:21 by elopin            #+#    #+#             */
-/*   Updated: 2025/06/05 01:49:50 by elopin           ###   ########.fr       */
+/*   Updated: 2025/06/06 22:07:07 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ class phonebook{
 	private:
 		contact contacts[8];
 		int	index;
+		std::string format(const std::string& str) const;
 	public:
 		phonebook();
 		void addcontact(const contact& newcontact);
 		void displaycontacts() const;
+		void search() const;
 };
 
 #endif
