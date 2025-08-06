@@ -8,6 +8,8 @@ int main() {
     z->announce();
     delete z;
 
+    randomChump("Bar");
+
     return 0;
 }
 
