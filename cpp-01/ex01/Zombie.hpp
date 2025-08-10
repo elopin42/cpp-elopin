@@ -10,7 +10,9 @@ class ZombieHorde {
     std::string name;
   public:
     ZombieHorde(std::string name);
-    ~ZombieHorde();   
+    ~ZombieHorde();
+
+    void announce();
 }
 
 #endif 
