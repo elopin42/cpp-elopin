@@ -1,7 +1,6 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-// Prototype de la fonction qui crée la horde
 Zombie* zombieHorde(int N, std::string name);
 
 int main() {
