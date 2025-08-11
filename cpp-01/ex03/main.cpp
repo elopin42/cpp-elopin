@@ -1,7 +1,11 @@
 #include "Weapon.hpp"
+#include "HumanA.hpp"
 
-int main(){
- weapon ttt;
- ttt.setType("glock");
- std::cout << "ton arme es -->" << ttt.getType() << std::endl;
+int main() {
+    Weapon club("crude spiked club");
+    HumanA bob("Bob", club);
+    bob.attack();
+    club.setType("some other type of club");
+    bob.attack();
 }
+

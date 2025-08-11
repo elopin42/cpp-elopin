@@ -2,11 +2,8 @@
 NAME = UNNECESSARY_VIOLENCE
 
 SRCS = main.cpp \
-			 Makefile \
 			 Weapon.cpp \
-			 Weapon.hpp 
-			 # HumanA.cpp \
-			 # HumanA.hpp \
+				HumanA.cpp 
 			 # HumanB.cpp \
 			 # HumanB.hpp \
 
