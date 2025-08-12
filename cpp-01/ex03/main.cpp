@@ -2,10 +2,10 @@
 #include "HumanA.hpp"
 
 int main() {
-    Weapon club("crude spiked club");
+    Weapon club("space 12");
     HumanA bob("Bob", club);
     bob.attack();
-    club.setType("some other type of club");
+    club.setType("space 14");
     bob.attack();
 }
 
