@@ -3,9 +3,8 @@ NAME = UNNECESSARY_VIOLENCE
 
 SRCS = main.cpp \
 			 Weapon.cpp \
-				HumanA.cpp 
-			 # HumanB.cpp \
-			 # HumanB.hpp \
+			 HumanA.cpp \
+			 HumanB.cpp
 
 CC = c++
 
