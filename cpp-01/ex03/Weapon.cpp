@@ -9,6 +9,3 @@ void Weapon::setType(const std::string &newType) {
   type = newType;
 }
 
-void Weapon::removetype() {
-  type = "";
-}

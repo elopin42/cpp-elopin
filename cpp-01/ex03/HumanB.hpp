@@ -13,6 +13,7 @@ public:
     HumanB(const std::string &name);
     void setWeapon(Weapon &weapon);
     void attack() const;
+    void removetype();
 };
 
 #endif
