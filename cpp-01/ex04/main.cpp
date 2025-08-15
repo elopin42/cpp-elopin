@@ -20,8 +20,8 @@ int main(int argc, char *argv[]){
     return 1;
   } 
   std::string line;
-  std::string s1 = argv[2]; // ce qu'on veut remplacer
-  std::string s2 = argv[3]; // ce par quoi remplacer
+  std::string s1 = argv[2];
+  std::string s2 = argv[3];
 
   while (std::getline(file, line)) {
       size_t pos = 0;
