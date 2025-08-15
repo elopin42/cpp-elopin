@@ -20,9 +20,19 @@ int main(int argc, char *argv[]){
     return 1;
   } 
   std::string line;
-  while (std::getline(file, line)){
-    file2 << line << std::endl;
+  std::string s1 = argv[2]; // ce qu'on veut remplacer
+  std::string s2 = argv[3]; // ce par quoi remplacer
+
+  while (std::getline(file, line)) {
+      size_t pos = 0;
+      while ((pos = line.find(s1, pos)) != std::string::npos) {
+          line.erase(pos, s1.length());
+         line.insert(pos, s2);
+         pos += s2.length();
+      }
+      file2 << line << std::endl;
   }
+
   file.close();
   file2.close();
   return 0;
