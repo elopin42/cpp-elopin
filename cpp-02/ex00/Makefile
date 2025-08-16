@@ -1,4 +1,4 @@
-NAME = My_First_Class_in_Orthodox_Camonical_Form
+NAME = My_First_Class_in_Orthodox_Canonical_Form
 
 SRCS = main.cpp \
 			 Fixed.cpp
