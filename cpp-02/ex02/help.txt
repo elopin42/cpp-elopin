@@ -1,0 +1,209 @@
+Top, tu as déjà une base d’ex01. Voilà **exactement** quoi corriger/ajouter pour réussir ex02 — sans te donner de “code tout fait”, mais avec un plan actionnable et précis.
+
+---
+
+## 0) Petites corrections immédiates
+
+1. **Include foireux**
+   Ta première ligne montre :
+
+```
+#/tmp/org.gnome.Evince-6550/image.70NHB3.pnginclude "Fixed.hpp"
+```
+
+→ remplace par : `#include "Fixed.hpp"`
+
+2. **`main.cpp` cassé**
+   Tu as des lignes découpées :
+
+```
+Fixed
+Fixed const
+a;
+b( Fixed( 5.05f ) * Fixed( 2 ) );
+```
+
+→ syntaxe correcte (sur **deux** lignes, pas quatre) :
+
+* ligne 1 : `Fixed a;`
+* ligne 2 : `Fixed const b( Fixed(5.05f) * Fixed(2) );`
+
+3. **Makefile (nom du binaire)**
+   `NAME = Now_we're_talking` contient des espaces et une apostrophe → mauvais plan sans quotes.
+   Fais simple :
+   `NAME = ex02`
+   (ou `now_we_are_talking`, sans espace/apostrophe).
+
+4. **Magic numbers**
+   Tu utilises `256` en dur. Remplace par `1 << _fractionalBits` partout (lisibilité + robustesse).
+
+---
+
+## 1) Signatures à **ajouter** dans `Fixed.hpp`
+
+Ajoute **ces prototypes** (pas les corps) :
+
+* Comparaisons (méthodes const) :
+
+  ```
+  bool operator>(const Fixed& rhs) const;
+  bool operator<(const Fixed& rhs) const;
+  bool operator>=(const Fixed& rhs) const;
+  bool operator<=(const Fixed& rhs) const;
+  bool operator==(const Fixed& rhs) const;
+  bool operator!=(const Fixed& rhs) const;
+  ```
+
+* Arithmétiques (méthodes const, retournent un **Fixed** par valeur) :
+
+  ```
+  Fixed operator+(const Fixed& rhs) const;
+  Fixed operator-(const Fixed& rhs) const;
+  Fixed operator*(const Fixed& rhs) const;
+  Fixed operator/(const Fixed& rhs) const;
+  ```
+
+* Incr./Décr. (pré et post) :
+
+  ```
+  Fixed& operator++();    // pré-incr
+  Fixed  operator++(int); // post-incr
+  Fixed& operator--();    // pré-décr
+  Fixed  operator--(int); // post-décr
+  ```
+
+* `min` / `max` (4 versions statiques) :
+
+  ```
+  static Fixed&       min(Fixed& a, Fixed& b);
+  static const Fixed& min(const Fixed& a, const Fixed& b);
+  static Fixed&       max(Fixed& a, Fixed& b);
+  static const Fixed& max(const Fixed& a, const Fixed& b);
+  ```
+
+*(Garde ton `operator<<` libre en bas du header comme tu l’as fait.)*
+
+---
+
+## 2) Implémentations à faire dans `Fixed.cpp` (guides **sans coller-coder**)
+
+### A) Comparaisons
+
+**Idée** : comparer directement `_raw` (même échelle pour tous).
+
+* modèle logique :
+  `return this->_raw <rhs> rhs._raw;` (remplace `<rhs>` par `>`, `<`, etc.)
+* **toutes** doivent être marquées `const`.
+
+### B) Arithmétiques
+
+* **`+` et `-`**
+
+  * `_raw_res = this->_raw ± rhs._raw;`
+  * Construis un `Fixed` résultat et **force** sa valeur brute à `_raw_res` via `setRawBits`.
+
+* **`*` (important : 64 bits)**
+
+  * On multiplie deux nombres déjà en Q8 → produit brut en Q16.
+  * Formule :
+
+    ```
+    temp = (int64) this->_raw * (int64) rhs._raw
+    _raw_res = temp >> _fractionalBits
+    ```
+  * Utilise un type 64 bits pour `temp` (sur les machines 42, `long` ou `long long` convient ; si ton compilo te hurle dessus pour `long long` en c++98, essaie `long`).
+
+* **`/` (précision)**
+
+  * Formule :
+
+    ```
+    temp = ((int64) this->_raw << _fractionalBits)
+    _raw_res = temp / rhs._raw
+    ```
+  * Division par zéro : le sujet accepte que ça crash → pas d’obligation de check.
+
+> Pour `*` et `/`, **ne** passe pas par `toFloat()`/`fromFloat()`. Garde la précision en entier, tu obtiendras exactement la sortie de l’énoncé.
+
+### C) Pré/Post ++/--
+
+* **Pré-incr (`++a`)** :
+
+  * `_raw += 1;`
+  * `return *this;` (**référence**)
+
+* **Post-incr (`a++`)** :
+
+  * fais une **copie** locale
+  * `_raw += 1;`
+  * `return copie;` (**valeur**)
+
+* **Pré/Post décrément** : idem mais avec `-=`.
+
+> Rappel : 1 LSB = **ε** = `1 / (1 << _fractionalBits)` = 0.00390625
+
+### D) `min` / `max` (références !)
+
+* **Version non-const** : retourne `a` ou `b` **par référence** suivant la comparaison de `_raw`.
+* **Version const** : même chose mais retourne `const Fixed&`.
+
+---
+
+## 3) Nettoyage/robustesse
+
+* Constructeur int : plutôt que `h * 256`, fais `h << _fractionalBits`.
+* `toInt()` : plutôt que `/ 256`, fais `(_raw >> _fractionalBits)`.
+* `toFloat()` : `return _raw / static_cast<float>(1 << _fractionalBits);`
+* Garde `roundf` pour le constructeur float (c’est demandé).
+
+---
+
+## 4) Check-list de tests (rapides)
+
+1. **Rejoue l’énoncé** :
+
+   ```
+   Fixed a;
+   Fixed const b( Fixed(5.05f) * Fixed(2) );
+   std::cout << a << "\n";
+   std::cout << ++a << "\n";
+   std::cout << a << "\n";
+   std::cout << a++ << "\n";
+   std::cout << a << "\n";
+   std::cout << b << "\n";
+   std::cout << Fixed::max(a, b) << "\n";
+   ```
+
+   → Attendu (sans les messages de constructeurs/destructeurs) :
+
+   ```
+   0
+   0.00390625
+   0.00390625
+   0.00390625
+   0.0078125
+   10.1016
+   10.1016
+   ```
+
+2. **Comparaisons** : vérifie `a < b`, `a != b`, etc.
+
+3. **min/max** : teste les 4 versions (const et non-const).
+   *Exemple d’intention* : `Fixed &r = Fixed::min(x, y); r = Fixed(42);` doit modifier l’original grâce au **retour par référence**.
+
+4. **Négatifs** : `Fixed(-2) * Fixed(3)`, `Fixed(-2) / Fixed(3)`, etc.
+
+---
+
+## 5) Pièges fréquents à éviter
+
+* Oublier `const` sur les opérateurs qui n’écrivent pas → impossible d’appeler sur des `const`.
+* Faire `min/max` qui retournent **par valeur** → **faux** (doit être une référence !).
+* Post-incr qui renvoie une référence → **faux** (doit renvoyer une **copie**).
+* Multiplication/division en 32 bits → overflow silencieux.
+* Binaire avec espace/apostrophe dans le Makefile → galères à l’exécution.
+
+---
+
+Si tu veux, colle juste **tes signatures ajoutées dans le .hpp** et **les blocs “logique”** que tu as écrit dans le .cpp (quelques lignes par opérateur) — je te fais un audit **ligne par ligne** pour confirmer la const-correctness, les retours (réf vs valeur), et les shifts/64 bits.
+
