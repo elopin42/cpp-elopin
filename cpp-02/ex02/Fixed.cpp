@@ -1,4 +1,4 @@
-include "Fixed.hpp"
+#include "Fixed.hpp"
 
 Fixed::Fixed() : _raw(0) {
     std::cout << "Default constructor called" << std::endl;
@@ -51,4 +51,104 @@ void Fixed::setRawBits( int const raw ){
 std::ostream &operator<<(std::ostream &out, const Fixed &f) {
     out << f.toFloat();
     return out;
+}
+
+bool Fixed::operator<(const Fixed& rhs) const{
+  return this->_raw < rhs._raw;
+}
+
+bool Fixed::operator>(const Fixed& rhs) const{
+  return this->_raw > rhs._raw;
+}
+
+bool Fixed::operator>=(const Fixed& rhs) const{
+  return this->_raw >= rhs._raw;
+}
+
+bool Fixed::operator<=(const Fixed& rhs) const{
+  return this->_raw <= rhs._raw;
+}
+
+bool Fixed::operator==(const Fixed& rhs) const{
+  return this->_raw == rhs._raw;
+}
+
+bool Fixed::operator!=(const Fixed& rhs) const{
+  return this->_raw != rhs._raw;
+}
+
+Fixed Fixed::operator+(const Fixed& rhs) const{
+  Fixed res;
+  res.setRawBits(this->_raw + rhs._raw);
+  return res;
+}
+
+Fixed Fixed::operator-(const Fixed& rhs) const{
+  Fixed res;
+  res.setRawBits(this->_raw - rhs._raw);
+  return res;
+}
+
+Fixed Fixed::operator*(const Fixed& rhs) const{
+  Fixed res;
+  long long tmp = static_cast<long long>(this->_raw) * rhs._raw;
+  res.setRawBits(static_cast<int>(tmp / 256));
+  return res;
+}
+
+Fixed Fixed::operator/(const Fixed& rhs) const{
+  Fixed res;
+  long long tmp = static_cast<long long>(this->_raw) * 256;
+  res.setRawBits(static_cast<int>(tmp / rhs._raw));
+  return res;
+}
+
+Fixed& Fixed::operator++(){
+  this->_raw += 1;
+  return *this;
+}
+
+Fixed Fixed::operator++(int){
+  Fixed res(*this);
+  this->_raw += 1;
+  return res;
+}
+
+Fixed& Fixed::operator--(){
+  this->_raw -= 1;
+  return *this;
+}
+
+Fixed Fixed::operator--(int){
+  Fixed res(*this);
+  this->_raw -= 1;
+  return res;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b){
+  if (a > b)
+    return b;
+  else
+    return a;
+}
+
+const Fixed& Fixed::min(const Fixed& a,const Fixed& b){
+  if (a > b)
+    return b;
+  else
+    return a;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b){
+  if (a < b)
+    return b;
+  else
+    return a;
+}
+
+const Fixed& Fixed::max(const Fixed& a,const Fixed& b){
+  if (a < b)
+    return b;
+  else
+    return a;
 }
