@@ -1,13 +1,13 @@
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 
-#define <iostream>
-#define <string>
+#include <iostream>
+#include <string>
 
 class ClapTrap{
   private:
     std::string name;
-    int hit_point;
+    int hit_points;
     int energy_points;
     int attack_damage;
   public:
@@ -19,4 +19,4 @@ class ClapTrap{
     ~ClapTrap();
 };
 
-#ifndef
+#endif 

@@ -25,12 +25,12 @@ void ClapTrap::attack(const std::string& target){
   }
 
   energy_points -= static_cast<int>(amount);
-  if (energy_points < 0)
-    energy_points = 0;
-    std::cout << "ClapTrap " << name << " attacks " << target
-            << ", causing " << attack_damage << " points of damage!"
-            << " [HP:" << hit_points << " EN:" << energy_points << "]"
-            << std::endl;
+    if (energy_points < 0)
+      energy_points = 0;
+      std::cout << "ClapTrap " << name << " attacks " << target
+             << ", causing " << attack_damage << " points of damage!"
+             << " [HP:" << hit_points << " EN:" << energy_points << "]"
+             << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
