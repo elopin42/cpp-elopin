@@ -5,7 +5,7 @@ ClapTrap::ClapTrap(): name("default"), hit_points(10), energy_points(10), attack
 }
 
 ClapTrap::ClapTrap(const std::string& name) : name(name), hit_points(10), energy_points(10), attack_damage(0){
-  std::cout << "constructor for "<< this->name << "called" << std::endl;
+  std::cout << "constructor for "<< this->name << " called" << std::endl;
 }
 
 ClapTrap::~ClapTrap() {
@@ -15,22 +15,21 @@ ClapTrap::~ClapTrap() {
 
 void ClapTrap::attack(const std::string& target){
   if (hit_points <= 0){
-    std::cout << name <<" d'ont have hit point" << std::endl;
+    std::cout << name <<" d'ont have hit points" << std::endl;
     return;
   }
 
   if (energy_points <= 0){
-    std::cout << name <<" d'ont have energy point" << std::endl;
+    std::cout << name <<" d'ont have energy points" << std::endl;
     return;
   }
 
-  energy_points -= static_cast<int>(amount);
-    if (energy_points < 0)
-      energy_points = 0;
-      std::cout << "ClapTrap " << name << " attacks " << target
-             << ", causing " << attack_damage << " points of damage!"
-             << " [HP:" << hit_points << " EN:" << energy_points << "]"
-             << std::endl;
+  if (energy_points > 0)
+      --energy_points;
+  std::cout << "ClapTrap " << name << " attacks " << target
+    << ", causing " << attack_damage << " points of damage!"
+    << " [HP:" << hit_points << " EN:" << energy_points << "]"
+    << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
@@ -39,7 +38,11 @@ void ClapTrap::takeDamage(unsigned int amount){
     std::cout << name << " already dead\n" << std::endl;
     return ;
   }
-  --hit_points;
+
+  hit_points -= amount;
+  if (hit_points < 0) 
+	  hit_points = 0;
+
   
   std::cout << "ClapTrap " << name << " takes " << amount << " damage!"
             << " [HP:" << hit_points << " EN:" << energy_points << "]"
@@ -58,8 +61,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
         return;
     }
 
-    --energy_points; // coût : 1 énergie
-    hit_points += static_cast<int>(amount);
+    --energy_points;
+	hit_points += static_cast<int>(amount);
 
     std::cout << "ClapTrap " << name << " repairs itself for "
               << amount << " HP. [HP:" << hit_points
