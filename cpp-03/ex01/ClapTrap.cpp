@@ -12,6 +12,16 @@ ClapTrap::~ClapTrap() {
     std::cout << "Destructor called for ClapTrap " << this->name << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap& other)
+: name(other.name),
+  hit_points(other.hit_points),
+  energy_points(other.energy_points),
+  attack_damage(other.attack_damage)
+{
+    std::cout << "ClapTrap copy constructor called for " << name << std::endl;
+}
+
+
 
 void ClapTrap::attack(const std::string& target){
   if (hit_points <= 0){
@@ -31,6 +41,18 @@ void ClapTrap::attack(const std::string& target){
     << " [HP:" << hit_points << " EN:" << energy_points << "]"
     << std::endl;
 }
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
+    std::cout << "ClapTrap copy assignment called" << std::endl;
+    if (this != &other) {
+        name = other.name;
+        hit_points = other.hit_points;
+        energy_points = other.energy_points;
+        attack_damage = other.attack_damage;
+    }
+    return *this;
+}
+
 
 void ClapTrap::takeDamage(unsigned int amount){
   if (hit_points <= 0)

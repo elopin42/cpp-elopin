@@ -1,18 +1,26 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main() {
-    ClapTrap a("Bob");
-    ClapTrap b("Eve");
-    a.attack("training dummy");
-    a.takeDamage(3);
-    a.beRepaired(5);
-    for (int i = 0; i < 10; ++i) {
-        b.attack("air");
-    }
-    b.attack("still air");
-    a.takeDamage(50);
-    a.attack("dummy");
-    a.beRepaired(3);
+    std::cout << "--- Création d'un ScavTrap ---" << std::endl;
+    ScavTrap s1("Serena");
+
+    std::cout << "\n--- Test attaque ---" << std::endl;
+    s1.attack("un dummy");
+    s1.attack("un autre dummy");
+
+    std::cout << "\n--- Test guardGate ---" << std::endl;
+    s1.guardGate();
+
+    std::cout << "\n--- Test copie ---" << std::endl;
+    ScavTrap s2(s1);    
+    s2.attack("copie dummy");
+
+    std::cout << "\n--- Test affectation ---" << std::endl;
+    ScavTrap s3;
+    s3 = s1;           
+    s3.attack("assign dummy");
+
+    std::cout << "\n--- Fin du programme ---" << std::endl;
     return 0;
 }
 
