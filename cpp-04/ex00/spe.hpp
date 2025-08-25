@@ -3,8 +3,20 @@
 
 #include "animal.hpp"
 
-class spe : public animal {
-  spe();
-}
+class Dog : public animal {
+  public:
+    Dog();
+    ~Dog();
+    void makesound();
+
+};
+
+class Cat : public animal {
+  public: 
+    Cat();
+    ~Cat();
+    void makesound();
+};
+
 
 #endif

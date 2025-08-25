@@ -1,7 +1,8 @@
 
 NAME = Polymorphisme
 SRCS = main.cpp \
-			 animal.cpp
+			 animal.cpp \
+			 spe.cpp
 
 CC = c++
 

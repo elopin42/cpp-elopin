@@ -11,8 +11,6 @@ class animal {
     ~animal();
     animal();
     animal(const std::string& type);
-    animal& operator=(animal& other);
-    makesound();
-}
+};
 
 #endif
