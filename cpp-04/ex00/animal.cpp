@@ -1,21 +1,21 @@
 #include "animal.hpp"
 
-animal::animal() : type("animal"){
-  std::cout << "animal constructor called" << std::endl;
+Animal::Animal() : type("Animal"){
+  std::cout << "Animal constructor called" << std::endl;
 }
 
-animal::animal(const std::string& type) : type(type) {
-  std::cout << "animal constructor called for " << this->type << std::endl;
+Animal::Animal(const std::string& type) : type(type) {
+  std::cout << "Animal constructor called for " << this->type << std::endl;
 }
 
-animal::~animal() {
-  std::cout << "animal destructeur called" << std::endl;
+Animal::~Animal() {
+  std::cout << "Animal destructeur called" << std::endl;
 }
 
-void animal::makesound() const {
-  std::cout << "animal default sound" << std::endl;
+void Animal::makeSound() const {
+  std::cout << "Animal default sound" << std::endl;
 } 
 
-std::string animal::gettype() const {
+std::string Animal::getType() const {
   return type;
 }

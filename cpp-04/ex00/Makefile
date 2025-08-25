@@ -2,7 +2,9 @@
 NAME = Polymorphisme
 SRCS = main.cpp \
 			 animal.cpp \
-			 spe.cpp
+			 spe.cpp \
+			 WrongAnimal.cpp \
+			 WrongCat.cpp
 
 CC = c++
 

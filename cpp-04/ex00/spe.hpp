@@ -3,19 +3,19 @@
 
 #include "animal.hpp"
 
-class Dog : public animal {
+class Dog : public Animal {
   public:
     Dog();
     ~Dog();
-    void makesound() const;
+    void makeSound() const;
 
 };
 
-class Cat : public animal {
+class Cat : public Animal {
   public: 
     Cat();
     ~Cat();
-    void makesound() const;
+    void makeSound() const;
 };
 
 
