@@ -8,9 +8,12 @@ class animal {
   protected:
     std::string type;
   public:
-    ~animal();
+    virtual ~animal();
     animal();
     animal(const std::string& type);
+
+    virtual void makesound() const;
+    std::string gettype() const;
 };
 
 #endif

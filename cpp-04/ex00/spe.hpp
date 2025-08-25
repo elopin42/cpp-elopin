@@ -7,7 +7,7 @@ class Dog : public animal {
   public:
     Dog();
     ~Dog();
-    void makesound();
+    void makesound() const;
 
 };
 
@@ -15,7 +15,7 @@ class Cat : public animal {
   public: 
     Cat();
     ~Cat();
-    void makesound();
+    void makesound() const;
 };
 
 

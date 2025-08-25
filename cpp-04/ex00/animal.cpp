@@ -11,3 +11,11 @@ animal::animal(const std::string& type) : type(type) {
 animal::~animal() {
   std::cout << "animal destructeur called" << std::endl;
 }
+
+void animal::makesound() const {
+  std::cout << "animal default sound" << std::endl;
+} 
+
+std::string animal::gettype() const {
+  return type;
+}

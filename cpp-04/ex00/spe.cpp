@@ -8,7 +8,7 @@ Dog::~Dog() {
   std::cout << "Dog destructor" << std::endl;
 }
 
-void Dog::makesound() {
+void Dog::makesound() const{
   std::cout << "waf waf" << std::endl;
 }
 
@@ -20,6 +20,6 @@ Cat::~Cat() {
   std::cout << "Cat destructor" << std::endl;
 }
 
-void Cat::makesound() {
+void Cat::makesound() const{
   std::cout << "miaou miaou" << std::endl;
 }
