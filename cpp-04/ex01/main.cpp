@@ -18,6 +18,7 @@ int main(int ac, char **av) {
     std::cout << "\n--- test makesound ---\n" <<std::endl;
     for (int i = 0; i < size; ++i)
         animals[i]->makeSound();
+
     std::cout << "\n--- delete ---\n" <<std::endl;
     for (int i = 0; i < size; ++i)
         delete animals[i];
