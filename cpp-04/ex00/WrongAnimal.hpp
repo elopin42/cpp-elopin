@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/26 16:09:34 by elopin            #+#    #+#             */
+/*   Updated: 2025/08/26 16:09:35 by elopin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WRONGANIMAL_HPP
 # define WRONGANIMAL_HPP
 
@@ -8,9 +20,10 @@ class WrongAnimal{
   protected:
     std::string type;
   public:
+    virtual ~WrongAnimal();
     WrongAnimal();
     WrongAnimal(const std::string& type);
-    virtual ~WrongAnimal();
+    WrongAnimal operator=(const WrongAnimal& other);
     void makeSound() const;
     std::string getType() const;
 };

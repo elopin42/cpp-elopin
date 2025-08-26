@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/26 16:09:31 by elopin            #+#    #+#             */
+/*   Updated: 2025/08/26 16:09:32 by elopin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "WrongAnimal.hpp"
+
+WrongAnimal& WrongAnima::operator=(const WrongAnimal& other) {
+  std::cout << "WrongAnimal copy assignement called" << std::endl;
+  if (this != &other) {
+    WrongAnimal::operator=(other);
+  }
+  return *this;
+}
 
 WrongAnimal::WrongAnimal() : type("wrong_Animal") {
   std::cout << "WrongAnimal constructor called" << std::endl;
