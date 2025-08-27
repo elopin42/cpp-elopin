@@ -12,14 +12,6 @@
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal& WrongAnima::operator=(const WrongAnimal& other) {
-  std::cout << "WrongAnimal copy assignement called" << std::endl;
-  if (this != &other) {
-    WrongAnimal::operator=(other);
-  }
-  return *this;
-}
-
 WrongAnimal::WrongAnimal() : type("wrong_Animal") {
   std::cout << "WrongAnimal constructor called" << std::endl;
 }
