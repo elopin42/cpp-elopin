@@ -20,6 +20,13 @@ Animal::Animal(const std::string& type) : type(type) {
   std::cout << "Animal constructor called for " << this->type << std::endl;
 }
 
+Animal& Animal::operator=(const Animal& other){
+  std::cout << "Animal copy assignement called" << std::endl;
+  if (this != &other)
+    Animal::operator=(other);
+  return *this;
+}
+
 Animal::~Animal() {
   std::cout << "Animal destructeur called" << std::endl;
 }
