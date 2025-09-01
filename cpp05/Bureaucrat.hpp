@@ -4,6 +4,12 @@
 #include <string>
 
 class Bureaucrat {
-  public :
-    std::string name const;
+  private :
+    const std::string name;
+    int grade;
+  public:
+    ~Bureaucrat();
+    Bureaucrat();
+    Bureaucrat(const std::string name);
+    Bureaucrat& operator=(const Bureaucrat& other);
 }
