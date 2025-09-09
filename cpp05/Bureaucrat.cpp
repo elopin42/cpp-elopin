@@ -19,3 +19,4 @@ Bureaucrat::Bureaucrat(const std::string& name) : name(name){
 Bureaucrat::~Bureaucrat() {
   std::cout << "Bureaucrat destructor called" << std::endl;
 }
+
