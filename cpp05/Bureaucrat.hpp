@@ -6,6 +6,13 @@
 #include <exception>
 
 class Bureaucrat {
+
+private:
+    const std::string name;
+    int grade;
+
+    void validateGrade(int g) const;
+
 public:
     class GradeTooHighException : public std::exception {
     public:
@@ -33,12 +40,9 @@ public:
     void incrementGrade();
     void decrementGrade();
 
-private:
-    const std::string name;
-    int grade;              
 
-    void validateGrade(int g) const;
 };
+
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
