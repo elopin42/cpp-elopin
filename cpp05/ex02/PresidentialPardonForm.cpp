@@ -38,6 +38,11 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
   std::cout << "PresidentialPardonForm created with " << target << std::endl;
 }
 
-void PresidentialPardonForm::executeAction() const {
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+    if (!getIsSigned())
+        throw std::runtime_error("Form is not signed");
+    if (executor.getGrade() > getGradeToExecute())
+        throw GradeTooLowException();
+
   std::cout << target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

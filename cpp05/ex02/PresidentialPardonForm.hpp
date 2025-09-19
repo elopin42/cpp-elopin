@@ -33,7 +33,7 @@ public:
 
     PresidentialPardonForm(const std::string& target);
 
-    void executeAction() const;
+    void execute(Bureaucrat const & form) const;
 };
 
 #endif

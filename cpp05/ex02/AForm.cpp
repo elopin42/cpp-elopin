@@ -62,11 +62,3 @@ std::ostream& operator<<(std::ostream& os, const AForm& f) {
     return os;
 }
 
-void AForm::execute(Bureaucrat const & executor) const {
-    if (!isSigned)
-        throw std::runtime_error("Form is not signed");
-    if (executor.getGrade() > gradeToExecute)
-        throw GradeTooLowException();
-
-    executeAction();
-}

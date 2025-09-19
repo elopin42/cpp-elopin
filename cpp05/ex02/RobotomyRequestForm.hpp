@@ -33,7 +33,7 @@ public:
 
     RobotomyRequestForm(const std::string& target);
 
-    void executeAction() const;
+    void execute(Bureaucrat const & executor) const;
 };
 
 #endif
