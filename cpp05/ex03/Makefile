@@ -5,20 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: elopin <elopin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/19 16:27:54 by elopin            #+#    #+#              #
-#    Updated: 2025/09/19 16:27:56 by elopin           ###   ########.fr        #
+#    Created: 2025/09/19 16:27:14 by elopin            #+#    #+#              #
+#    Updated: 2025/09/19 16:27:15 by elopin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = ex03
+NAME = ex02
 SRCS = main.cpp \
 			 Bureaucrat.cpp \
 			 AForm.cpp \
 			 ShrubberyCreationForm.cpp \
 			 RobotomyRequestForm.cpp \
-			 PresidentialPardonForm.cpp \
-			 Intern.cpp
+			 PresidentialPardonForm.cpp
 
 CC = c++
 

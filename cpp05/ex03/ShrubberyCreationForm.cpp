@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:28:07 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:28:08 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:28 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:29 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,13 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), target(target) {
   std::cout << "ShrubberyCreationForm created with " << target << std::endl;
 }
-void ShrubberyCreationForm::executeAction() const {
+
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+    if (!getIsSigned())
+        throw std::runtime_error("Form is not signed");
+    if (executor.getGrade() > getGradeToExecute())
+        throw GradeTooLowException();
+
     std::ofstream file((target + "_shrubbery").c_str());
     if (!file)
         throw std::runtime_error("Failed to create file");
@@ -53,5 +59,4 @@ void ShrubberyCreationForm::executeAction() const {
      << "             ||     ||\n"
      << "             ||     ||\n"
      << "       ______/  \\___/_____\n";
-
 }

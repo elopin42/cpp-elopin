@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:28:04 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:28:05 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:25 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:26 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 
     RobotomyRequestForm(const std::string& target);
 
-    void executeAction() const;
+    void execute(Bureaucrat const & executor) const;
 };
 
 #endif

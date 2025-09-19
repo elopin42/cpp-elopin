@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:27:59 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:28:00 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:19 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:20 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 
     PresidentialPardonForm(const std::string& target);
 
-    void executeAction() const;
+    void execute(Bureaucrat const & form) const;
 };
 
 #endif

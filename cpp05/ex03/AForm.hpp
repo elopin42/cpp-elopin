@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:27:35 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:27:36 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:26:55 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:26:56 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ public:
     AForm();                                      
     AForm(const AForm& other);                    
     AForm& operator=(const AForm& other);         
-    virtual ~AForm();                                    
+    ~AForm();                                    
 
     AForm(const std::string& name, const int gts, const int gte);
 
@@ -55,8 +55,7 @@ public:
     int getGradeToExecute() const;
 
     void beSigned(const Bureaucrat& b);
-    void execute(Bureaucrat const & form) const;
-    virtual void executeAction() const = 0;
+    virtual void execute(Bureaucrat const & form) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& f);

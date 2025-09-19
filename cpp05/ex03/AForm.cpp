@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:27:33 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:27:34 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:26:52 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:26:53 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,3 @@ std::ostream& operator<<(std::ostream& os, const AForm& f) {
     return os;
 }
 
-void AForm::execute(Bureaucrat const & executor) const {
-    if (!isSigned)
-        throw std::runtime_error("Form is not signed");
-    if (executor.getGrade() > gradeToExecute)
-        throw GradeTooLowException();
-
-    executeAction();
-}

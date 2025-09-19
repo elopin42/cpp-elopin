@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:27:57 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:27:58 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:16 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:17 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
   std::cout << "PresidentialPardonForm created with " << target << std::endl;
 }
 
-void PresidentialPardonForm::executeAction() const {
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+    if (!getIsSigned())
+        throw std::runtime_error("Form is not signed");
+    if (executor.getGrade() > getGradeToExecute())
+        throw GradeTooLowException();
+
   std::cout << target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

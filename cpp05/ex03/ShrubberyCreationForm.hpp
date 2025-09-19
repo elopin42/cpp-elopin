@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:28:11 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:28:12 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:30 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:31 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 
     ShrubberyCreationForm(const std::string& target);
 
-    void executeAction() const;
+    void execute(Bureaucrat const & executor) const;
 };
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 16:28:02 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/19 16:28:03 by elopin           ###   ########.fr       */
+/*   Created: 2025/09/19 16:27:22 by elopin            #+#    #+#             */
+/*   Updated: 2025/09/19 16:27:23 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45), target(target) {
   std::cout << "RobotomyRequestForm created with " << target << std::endl;
 }
-void RobotomyRequestForm::executeAction() const {
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
+    if (!getIsSigned())
+        throw std::runtime_error("Form is not signed");
+    if (executor.getGrade() > getGradeToExecute())
+        throw GradeTooLowException();
+
   std::cout << "* driling noise *" << std::endl;
   if (std::rand() % 2 == 0)
     std::cout << "robotomy success for " << target << std::endl;
   else
     std::cout << "robotomy failed for " << target << std::endl;
+
 }
