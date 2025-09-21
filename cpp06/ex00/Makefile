@@ -1,6 +1,7 @@
 
-NAME = ex00
-SRCS = main.cpp 
+NAME = convert
+SRCS = main.cpp \
+			 ScalarConverter.cpp
 
 CC = c++
 
