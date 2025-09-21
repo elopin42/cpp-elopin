@@ -1,6 +1,7 @@
-NAME = serialization
+
+NAME = identify
 SRCS = main.cpp \
-			 Serializer.cpp
+			 identify.cpp
 
 CC = c++
 
