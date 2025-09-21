@@ -16,8 +16,9 @@
 #include <string>
 
 class ScalarConverter {
-  public :
+  private:
     ScalarConverter();
+  public :
     ~ScalarConverter();
     ScalarConverter(const ScalarConverter &);
     ScalarConverter &operator=(const ScalarConverter &);
