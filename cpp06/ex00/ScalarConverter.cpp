@@ -21,8 +21,6 @@
 
 ScalarConverter::~ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &) {}
-
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &) {
     return *this;
 }
@@ -30,6 +28,12 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &) {
 void ScalarConverter::convert(const std::string &literal) {
     double value;
     char *end = NULL;
+    int a = 0;
+
+    if (literal.size() > 1)
+      for (int i = 0; literal[i]; i++)
+        if (std::isalpha(literal[i]) && ((int)literal.length() != i && literal[i] != 'f'))
+          a++;
 
     if (literal.size() == 1 && !std::isdigit(literal[0])) {
         char c = literal[0];
@@ -38,7 +42,7 @@ void ScalarConverter::convert(const std::string &literal) {
         value = std::strtod(literal.c_str(), &end);
     }
 
-    if (std::isnan(value) || std::isinf(value) ||
+    if (a || std::isnan(value) || std::isinf(value) ||
         value < std::numeric_limits<char>::min() ||
         value > std::numeric_limits<char>::max()) {
         std::cout << "char: impossible" << std::endl;
@@ -50,7 +54,7 @@ void ScalarConverter::convert(const std::string &literal) {
             std::cout << "char: Non displayable" << std::endl;
     }
 
-    if (std::isnan(value) || std::isinf(value) ||
+    if (a || std::isnan(value) || std::isinf(value) ||
         value < std::numeric_limits<int>::min() ||
         value > std::numeric_limits<int>::max()) {
         std::cout << "int: impossible" << std::endl;
@@ -63,7 +67,7 @@ void ScalarConverter::convert(const std::string &literal) {
         std::cout << "float: nanf" << std::endl;
     } else if (std::isinf(value)) {
         std::cout << "float: " << (value > 0 ? "+inff" : "-inff") << std::endl;
-    } else if (value < -std::numeric_limits<float>::max() ||
+    } else if (a || value < -std::numeric_limits<float>::max() ||
                value > std::numeric_limits<float>::max()) {
         std::cout << "float: impossible" << std::endl;
     } else {
@@ -76,7 +80,7 @@ void ScalarConverter::convert(const std::string &literal) {
         std::cout << "double: nan" << std::endl;
     } else if (std::isinf(value)) {
         std::cout << "double: " << (value > 0 ? "+inf" : "-inf") << std::endl;
-    } else if (value < -std::numeric_limits<double>::max() ||
+    } else if (a || value < -std::numeric_limits<double>::max() ||
                value > std::numeric_limits<double>::max()) {
         std::cout << "double: impossible" << std::endl;
     } else {
