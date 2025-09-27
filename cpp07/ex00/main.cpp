@@ -6,7 +6,7 @@
 /*   By: elopin <elopin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 17:37:25 by elopin            #+#    #+#             */
-/*   Updated: 2025/09/27 17:37:26 by elopin           ###   ########.fr       */
+/*   Updated: 2025/09/27 17:39:32 by elopin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main( void ) {
   std::cout << "a = " << a << ", b = " << b << std::endl;
   std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
   std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-  std::string c = "";
+  std::string c = "chaine1";
   std::string d = "chaine2";
   ::swap(c, d);
   std::cout << "c = " << c << ", d = " << d << std::endl;
