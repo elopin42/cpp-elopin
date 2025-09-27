@@ -19,6 +19,7 @@ class btc {
         }
         return *this;
     }
+
     ~btc() {}
 
      void loadfiles(const std::string filename) {
@@ -31,20 +32,15 @@ class btc {
       }
       file.close();
     }
-     void data_processing(const std::string filename) {
-       try {
-          std::ifstream file(filename.c_str());
-         if (!file.is_open()) throw std::runtime_error("could not open file.");
-       }
-       catch(const std::exception& e) {
-         std::cerr << "Error: " << e.what() << std::endl;
-       }
-     }
       void printAll() const {
         for (std::vector<std::string>::const_iterator it = lines.begin(); it != lines.end(); ++it) {
             std::cout << *it << std::endl;
         }
-
+      }
+      const std::string& getline(size_t index) const {
+        if (index >= lines.size()) 
+          throw std::out_of_range("Index hors limite");
+        return lines[index];
       }
 };
 
