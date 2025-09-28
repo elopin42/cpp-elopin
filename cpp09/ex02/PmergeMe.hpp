@@ -4,6 +4,10 @@
 #include <deque>
 #include <list>
 #include <iostream>
+#include <cstdlib>
+#include <algorithm>
+#include <ctime>
+#include <iomanip>
 
 class PmergeMe {
 private:
@@ -23,8 +27,20 @@ public:
         }
         return *this;
     }
+    size_t size() const {
+        return cont1.size();
+    }
 
     ~PmergeMe() {}
+    double triedeque();
+    double trielist();
+    void printlis();
+
+    void addNumber(int n) {
+        cont1.push_back(n);
+        cont2.push_back(n);
+    }
+
 };
 
 #endif // PMERGEME_HPP
