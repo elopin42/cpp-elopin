@@ -30,7 +30,7 @@ void RPN::process(std::string st) {
     }
     else {
       double num = atof(token.c_str());
-      if (num > 10 || num < 0)
+      if (num > 9 || num < 0)
       {
         std::cerr << "Error" << std::endl;
         return ;
